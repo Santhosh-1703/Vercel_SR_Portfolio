@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}
+Home
+{% endblock title %}
+{% block body %}
+
+<section id="hero" class="hero section">
+  <img src="/static/assets/img/hero-bg.jpg" alt="">
+  <div class="container" data-aos="zoom-out">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <h2>SANTHOSH R</h2>
+        <br>
+        <p>I'm <span class="auto-type"> </span><span></span></p>
+        <br><br>
+        <a href="/contact" class="btn-box">Connect me<br></a>
+
+      </div>
+    </div>
+  </div>
+
+</section><!-- /Hero Section -->
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script>
+  var typed = new Typed('.auto-type',{
+    strings : ["Customer Service Associate.","Data Analyst.",'Business Analyst.','Meme Creator.','Food Vlogger.','Adventure Explorer.'],
+    typeSpeed : 150,
+    backSpeed : 150,
+    looped : true
+  })
+</script>
+<br>
+<h2 class='text-center'>Thanks for viewing my Portfolio, {{user.first_name}} ! Explore all tabs</h2>
+
+{% endblock body %}

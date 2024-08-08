@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}
+Contact
+{% endblock title %}
+{% block body %}
+<h1 class="text-center"><b>Welcome to <span class="underlight" style="color: rgb(132, 239, 10);">Contact</span> Page! </b></h1>
+<div class="row">
+    <div class="col md-4"></div>
+    <div class="col md-4">
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" 
+        role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" 
+            aria-label="Close"></button>
+         </div>
+        {% endfor %}
+        <h3 class="text-center">Reach out by entering this form</h3>
+        <br>
+
+        <form action="/contact/" method="post">{% csrf_token %}
+            <div class="form-group">
+                <label for="fname">Name</label>
+                <input type="text" class="form-control" 
+                name="name" value="{{user.first_name}}"
+                placeholder="Enter your Name"
+                id="fname" 
+                Required >
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="email"><i class="fa-regular fa-envelope"></i> Email</label>
+                <input type="email" class="form-control" 
+                name="email" value="{{user.username}}"
+                placeholder="Enter your email" id="email"
+                Required >
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="num"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                <input type="number" class="form-control" name="num"
+                placeholder="Enter your Number" id="num"
+                Required >
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="desc">How can i help you?</label>
+                <textarea name="desc" id="desc" class="form-control p-3" cols="5" rows="5" required>
+                </textarea>
+                
+            </div>
+            <br>
+            <div class="d-grid gap-2">
+                <button class="btn" type="submit">Submit</button>
+            </div>
+        </form>   
+    </div>
+    <div class="col md-4"></div>
+</div>
+{% endblock body %}
+

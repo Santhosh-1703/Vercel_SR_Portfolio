@@ -1,0 +1,72 @@
+Install allauth
+
+*pip install django-allauth
+
+In settings.py file add below configuration
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',)
+
+SOCIALACCOUNT_PROVIDERS = { 
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': { 
+            'access_type':'online',
+        }
+    }
+}
+
+go to login.html & add social account
+
+{% load socialaccount %}
+
+we have added urls account in project urls.py
+path('accounts/',include('allauth.urls'))
+
+we have ran migrate
+python manage.py migrate
+
+add this in settings.py
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"
+
+create API console watch video carefully
+
+1. Go to this link https://console.developers.google.com/
+
+2. Dashboard create a project & proceed
+
+3.Dashboard go to credentials on the dropdown, choose OAuth Client ID option.
+
+4. Dashboard Oauth consent screen create external give app name & save
+
+5. create OAuth client ID
+Authorized Javascript origins---> http://127.0.0.1:8000
+Authorized redirect Url --> http://127.0.0.1:8000/accounts/google/login/callback/
+
+6. Get the credentials
+
+# Add social applications
+
+Provider: google
+Name: Google API
+Client ID:
+Secret Key:
+
+#ADD SITEID ITS UNIQUE TO EACH CLIENTID
+
+#USING TERMINAL ENTER THIS CMD
+
+.\manage.py shell or python manage.py shell
+
+from django.contrib.sites.models import Site
+sites=Site()
+sites.domain='http://127.0.0.1:8000/'
+sites.name='htpp://127.0.0.1:8000/'
+sites.save()
+print(sites.id)

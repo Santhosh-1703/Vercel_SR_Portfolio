@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}
+Login
+{% endblock title %}
+
+{% block hero %}
+
+{% endblock hero %}
+
+{% block body %}
+{% load socialaccount %}
+
+<div class="row">
+    <div class="col md-4"></div>
+    <div class="col md-4">
+        <h1 class="text-center">Login</h1>
+        <br>
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" 
+        role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" 
+            aria-label="Close"></button>
+         </div>
+        {% endfor %}
+
+        <div class="d-grid gap-2">
+            {% comment %} <a href="{% provider_login_url 'google' %}" class="btn btn-outline-success">Login with  <i class="bi bi-google"></i> </a> {% endcomment %}
+        </div>
+        <hr>
+        
+        <form action="/login" method="post">{% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email"
+                placeholder="Enter your email" required id="email">
+            </div>
+            <div class="form-group">
+                <label for="pass1">Password</label>
+                <input type="password" class="form-control" name="pass1"
+                placeholder="Enter your Password" required id="pass1">
+            </div>
+            <br>
+            <div class="d-grid gap-2">
+                <button class="btn" type="submit">Login</button>
+            </div>
+        </form>
+        <hr>
+        <center>New User? <a href="/signup">Signup</a></center> 
+        
+        
+    </div>
+    <div class="col md-4"></div>
+</div>
+    
+{% endblock body %}
